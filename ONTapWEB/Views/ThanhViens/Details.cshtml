@@ -1,0 +1,91 @@
+﻿@model ONTapWEB.Models.ThanhVien
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string gtinh = "";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ThanhVien</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaTV)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaTV)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HoTV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoTV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenTV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenTV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgaySinh)
+        </dt>
+
+        <dd>
+            @{
+                var item = Model;
+                DateTime ngaySinh = (DateTime)item.NgaySinh;
+            }
+            @ngaySinh.ToShortDateString()
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GioiTinh)
+        </dt>
+
+        <dd>
+            @{if (Model.GioiTinh == true)
+                { gtinh = "Nam"; }
+                else
+                { gtinh = "Nữ"; }
+            }
+            @gtinh
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tinh.TenTinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tinh.TenTinh)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaTV }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

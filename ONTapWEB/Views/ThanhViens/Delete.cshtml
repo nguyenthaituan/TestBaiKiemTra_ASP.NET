@@ -1,0 +1,97 @@
+﻿@model ONTapWEB.Models.ThanhVien
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    String gtinh = "";
+}
+
+<h2>Xác nhận thông tin cần xóa</h2>
+
+<div>   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaTV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaTV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoTV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoTV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenTV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenTV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgaySinh)
+        </dt>
+
+        <dd>
+          @{ 
+              var item = Model;
+              DateTime ngaySinh = (DateTime)item.NgaySinh;
+          }@ngaySinh.ToShortDateString()
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GioiTinh)
+        </dt>
+
+        <dd>
+            @{if (Model.GioiTinh == true)
+                { gtinh = "Nam"; }
+                else
+                { gtinh = "Nữ"; }
+            }
+            @gtinh
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tinh.TenTinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tinh.TenTinh)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    Bạn có chắc chắn muốn xóa thông tin này?
+    <input type="submit" value="Xóa" class="btn btn-default" /> |
+    @Html.ActionLink("Quay lại", "Index")
+</div>
+    }
+</div>

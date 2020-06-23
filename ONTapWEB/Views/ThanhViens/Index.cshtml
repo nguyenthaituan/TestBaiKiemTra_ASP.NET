@@ -1,0 +1,121 @@
+﻿@model IEnumerable<ONTapWEB.Models.ThanhVien>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string gtinh = "";
+
+    var grid = new WebGrid(Model, canPage: true, defaultSort: "TenTV", rowsPerPage: 3);
+    @Scripts.Render("~/Scripts/jquery-1.6.2.min.js")
+}
+
+<h2>Index</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+<div id="gridContent">
+    @ViewBag.TB
+    @grid.GetHtml(
+        tableStyle: "table table-bordered table-hover",
+        footerStyle: " grid-footer",
+        fillEmptyRows: true,
+        mode: WebGridPagerModes.Numeric,
+        alternatingRowStyle: "alternatingRowStyle",
+        columns: new[]  // colums in grid
+         {
+    grid.Column("STT",format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex),
+    grid.Column("MaTV","Mã thành viên"), //the model fields to display
+    grid.Column("HoTV","Họ thành viên"  ),
+    grid.Column("TenTV","Tên thành viên"),
+    grid.Column("NgaySinh","Ngày sinh",format:@<text> @item.NgaySinh.ToString("dd/MM/yyyy")</text>),
+    grid.Column("GioiTinh","Giới tính",format: (@item) => @item.GioiTinh==true?"Nam":"Nữ"),
+
+    grid.Column("Email","Email"),
+    grid.Column("DiaChi","Địa chỉ"),
+    grid.Column("Tinh.TenTinh","TenTinh"),
+
+    grid.Column(format: (item) => Html.ActionLink("Cập nhật", "Edit", "ThanhViens",new { id = item.MaTV },"ThanhViensController")),
+    grid.Column(format: (item) => Html.ActionLink("Xem chi tiết", "Details","ThanhViens", new { id = item.MaTV },"ThanhViensController")),
+    grid.Column(format: (item) => Html.ActionLink("Xóa", "Delete","ThanhViens", new { id = item.MaTV },"ThanhVienViensController")),
+}
+
+)
+</div>
+
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaTV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HoTV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenTV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgaySinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GioiTinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tinh.TenTinh)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.MaTV)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.HoTV)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TenTV)
+    </td>
+    <td>
+        @{
+            DateTime ngaySinh = (DateTime)item.NgaySinh;
+        }
+        @ngaySinh.ToShortDateString()
+
+    </td>
+    <td>
+        @{ if (item.GioiTinh == true)
+            { gtinh = "Nam"; }
+            else
+            { gtinh = "Nữ"; }
+
+        }@gtinh
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DiaChi)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Tinh.TenTinh)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.MaTV }) |
+        @Html.ActionLink("Details", "Details", new { id = item.MaTV }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.MaTV })
+    </td>
+</tr>
+    }
+
+</table>*@
