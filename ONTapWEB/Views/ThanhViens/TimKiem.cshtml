@@ -97,27 +97,27 @@
     <div id="gridContent" style="margin-top: 40px">
         @ViewBag.TB
         @grid.GetHtml(
-            tableStyle: "table table-bordered table-hover",
-            footerStyle: "grid-footer",
-            fillEmptyRows: true,
-            mode: WebGridPagerModes.Numeric,
-            alternatingRowStyle: "alternatingRowStyle",
-            columns: new[]  // colums in grid
+        tableStyle: "table table-bordered table-hover",
+        footerStyle: "grid-footer",
+        fillEmptyRows: true,
+        mode: WebGridPagerModes.Numeric,
+        alternatingRowStyle: "alternatingRowStyle",
+        columns: new[]  // colums in grid
              {
         grid.Column("STT",format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex),
         grid.Column("MaTV","Mã thành viên"), //the model fields to display
         grid.Column("HoTV","Họ thành viên"  ),
         grid.Column("TenTV","Tên thành viên"),
         grid.Column("NgaySinh","Ngày sinh",format:@<text> @item.NgaySinh.ToString("dd/MM/yyyy")</text>),
-grid.Column("GioiTinh","Giới tính",format: (@item) => @item.GioiTinh==true?"Nam":"Nữ"),
+        grid.Column("GioiTinh","Giới tính",format: (@item) => @item.GioiTinh==true?"Nam":"Nữ"),
 
-grid.Column("Email","Email"),
-grid.Column("DiaChi","Địa chỉ"),
-grid.Column("Tinh.TenTinh","Tên tỉnh"),
+        grid.Column("Email","Email"),
+        grid.Column("DiaChi","Địa chỉ"),
+        grid.Column("Tinh.TenTinh","Tên tỉnh"),
 
-grid.Column(format: (item) => Html.ActionLink("Cập nhật", "Edit", "ThanhViens",new { id = item.MaTV },"ThanhViensController")),
-grid.Column(format: (item) => Html.ActionLink("Xem chi tiết", "Details","ThanhViens", new { id = item.MaTV },"ThanhViensController")),
-grid.Column(format: (item) => Html.ActionLink("Xóa", "Delete","ThanhViens", new { id = item.MaTV },"ThanhViensController")),
+        grid.Column(format: (item) => Html.ActionLink("Cập nhật", "Edit", "ThanhViens",new { id = item.MaTV },"ThanhViensController")),
+        grid.Column(format: (item) => Html.ActionLink("Xem chi tiết", "Details","ThanhViens", new { id = item.MaTV },"ThanhViensController")),
+        grid.Column(format: (item) => Html.ActionLink("Xóa", "Delete","ThanhViens", new { id = item.MaTV },"ThanhViensController")),
 }
 
 )

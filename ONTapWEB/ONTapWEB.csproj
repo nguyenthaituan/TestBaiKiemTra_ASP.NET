@@ -220,6 +220,7 @@
     <Content Include="Views\Tinhs\Index.cshtml" />
     <Content Include="Views\GioiThieu\GioiThieu.cshtml" />
     <Content Include="Views\ThanhViens\TimKiem.cshtml" />
+    <Content Include="Views\ThanhViens\TimKiemTheoID.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

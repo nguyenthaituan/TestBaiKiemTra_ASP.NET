@@ -24,8 +24,7 @@ namespace ONTapWEB.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public string Email { get; set; }
         public string DiaChi { get; set; }
-        public string MaTinh { get; set; }
-    
+        public string MaTinh { get; set; }   
         public virtual Tinh Tinh { get; set; }
 
     }

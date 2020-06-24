@@ -22,6 +22,16 @@ namespace ONTapWEB.Controllers
         }
 
         [HttpGet]
+        public ActionResult TimKiemTheoID(string MaTV = "")
+        {
+            ViewBag.MaTV = MaTV;
+            var thanhviens = db.ThanhVien.SqlQuery("EXEC TIMKIEM @MaTV ='" + @MaTV + "' ");
+            if (thanhviens.Count() == 0)
+                ViewBag.TB = "Không có thông tin tìm kiếm.";
+            return View(thanhviens.ToList());
+        }
+
+        [HttpGet]
         public ActionResult TimKiem(string MaTV = "", string HoTen="", string NgaySinh="", 
             string GioiTinh="", string Email="", string DiaChi="", string MaTinh="")  
         {
