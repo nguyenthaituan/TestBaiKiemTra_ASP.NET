@@ -3,10 +3,12 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    string gtinh = "";
+  
 
     var grid = new WebGrid(Model, canPage: true, defaultSort: "TenTV", rowsPerPage: 3);
     @Scripts.Render("~/Scripts/jquery-1.6.2.min.js")
+
+ 
 }
 
 <h2>Index</h2>
@@ -18,7 +20,7 @@
 <div id="gridContent">
     @ViewBag.TB
     @grid.GetHtml(
-        tableStyle: "table table-bordered table-hover",
+        tableStyle: "table table-bordered table-hover", 
         footerStyle: " grid-footer",
         fillEmptyRows: true,
         mode: WebGridPagerModes.Numeric,

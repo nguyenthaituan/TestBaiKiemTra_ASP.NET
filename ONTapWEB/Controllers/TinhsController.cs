@@ -40,6 +40,14 @@ namespace ONTapWEB.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public ActionResult TimKiemTinh(string MaTinh = "", string TenTinh = "")
+        {
+            ViewBag.MaTinh = MaTinh;
+            ViewBag.TenTinh = TenTinh;
+            var tinh = db.Tinh.SqlQuery("EXEC Tinh_TimKiem @MaTinh ='" + MaTinh+ "', @TenTinh ='" + TenTinh + "' ");              
+            return View(tinh.ToList());
+        }
 
         // POST: Tinhs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

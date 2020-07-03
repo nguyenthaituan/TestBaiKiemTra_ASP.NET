@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "TimKiemTinh";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var grid = new WebGrid(Model, canPage: true, defaultSort: "MaTinh", rowsPerPage: 2);
+    @Scripts.Render("~/Scripts/jquery-1.6.2.min.js")
+}
+<head>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("TimKiemTinh", "Tinhs", FormMethod.Get))
+        {
+            @Html.AntiForgeryToken()
+
+
+        <table class="table1" align="center">
+            <tr>
+                <td>
+                    <div> Mã tỉnh: </div>
+                </td>
+                <td>
+                    <input type="text" name="MaTinh" value="@ViewBag.MaTinh" class="form-control" />
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>
+                    <div> Tên tỉnh: </div>
+                </td>
+                <td>
+                    <input type="text" name="TenTinh" value="@ViewBag.TenTinh" class="form-control" />
+                </td>
+
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <div style="margin-top: 10px">
+                        <input type="submit" name="submit" value="Tìm kiếm Tỉnh" style="margin-left: 5px;width:100px;
+                              background-color: aquamarine;color:black" class="btn btn-default" />
+                    </div>
+                </td>
+            </tr>
+        </table>
+        }
+    </div>
+
+    <div id="gridContent" style="margin-top: 40px">
+        @ViewBag.TB
+        @grid.GetHtml(
+        tableStyle: "table table-bordered table-hover",
+        footerStyle: "grid-footer",
+        fillEmptyRows: true,
+        mode: WebGridPagerModes.Numeric,
+        alternatingRowStyle: "alternatingRowStyle",
+        columns: new[]  // colums in grid
+             {
+        grid.Column("STT",format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex),
+        grid.Column("MaTinh","Mã tỉnh"), //the model fields to display
+        grid.Column("TenTinh","Tên tỉnh"  ),
+
+
+grid.Column(format: (item) => Html.ActionLink("Cập nhật", "Edit", "Tinhs",new { id = item.MaTinh },"TinhsController")),
+grid.Column(format: (item) => Html.ActionLink("Xem chi tiết", "Details","Tinhs", new { id = item.MaTinh },"TinhsController")),
+grid.Column(format: (item) => Html.ActionLink("Xóa", "Delete","Tinhs", new { id = item.MaTinh },"TinhsController")),
+}
+
+)
+    </div>
+
+
+</body>
+

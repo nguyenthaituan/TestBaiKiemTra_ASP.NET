@@ -33,7 +33,7 @@ namespace ONTapWEB.Controllers
 
         [HttpGet]
         public ActionResult TimKiem(string MaTV = "", string HoTen="", string NgaySinh="", 
-            string GioiTinh="", string Email="", string DiaChi="", string MaTinh="")  
+            string GioiTinh="", string Email="", string DiaChi="", string TenTinh="")  
         {
             if (GioiTinh != "1" && GioiTinh != "0")
                 GioiTinh = null;
@@ -44,10 +44,8 @@ namespace ONTapWEB.Controllers
             ViewBag.Email = Email;
             ViewBag.DiaChi = DiaChi;
             ViewBag.MaTinh = new SelectList(db.Tinh, "MaTinh", "TenTinh");
-
-            var thanhviens = db.ThanhVien.SqlQuery("ThanhVien_TimKiem'" + MaTV + "','" + HoTen + "','" + NgaySinh + "','" + GioiTinh + "','" + Email + "',N'" + DiaChi + "','" + MaTinh + "'");
-            if (thanhviens.Count() == 0)
-                ViewBag.TB = "Không có thông tin tìm kiếm.";
+            var thanhviens = db.ThanhVien.SqlQuery("EXEC ThanhVien_TimKiem @MaTV = '" + MaTV +"',@HoTen = N'"+ HoTen +"', @NgaySinh = '"+NgaySinh+"', @GioiTinh = '"+GioiTinh+"' ,@Email = N'"+Email+"',@DiaChi = N'"+DiaChi+"',@MaTinh = '"+ TenTinh + "' ");
+            
             return View(thanhviens.ToList());
         }
 

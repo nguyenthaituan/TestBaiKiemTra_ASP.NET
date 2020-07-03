@@ -221,6 +221,7 @@
     <Content Include="Views\GioiThieu\GioiThieu.cshtml" />
     <Content Include="Views\ThanhViens\TimKiem.cshtml" />
     <Content Include="Views\ThanhViens\TimKiemTheoID.cshtml" />
+    <Content Include="Views\Tinhs\TimKiemTinh.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

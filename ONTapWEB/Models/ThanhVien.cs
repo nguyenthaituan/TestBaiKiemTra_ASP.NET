@@ -18,8 +18,8 @@ namespace ONTapWEB.Models
         public string MaTV { get; set; }
         public string HoTV { get; set; }
         public string TenTV { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> NgaySinh { get; set; }
-        [DisplayFormat(DataFormatString = "{0:#,##0}", ApplyFormatInEditMode = true)]
         public Nullable<bool> GioiTinh { get; set; }
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public string Email { get; set; }
