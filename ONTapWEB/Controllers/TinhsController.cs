@@ -40,17 +40,17 @@ namespace ONTapWEB.Controllers
         {
             return View();
         }
+
         [HttpGet]
         public ActionResult TimKiemTinh(string MaTinh = "", string TenTinh = "")
         {
             ViewBag.MaTinh = MaTinh;
-            //123
             ViewBag.TenTinh = TenTinh;
             var tinh = db.Tinh.SqlQuery("EXEC Tinh_TimKiem @MaTinh ='" + MaTinh+ "', @TenTinh ='" + TenTinh + "' ");              
             return View(tinh.ToList());
         }
 
-        // POST: Tinhs/Create
+        // POST: Tinhs/Create123
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
