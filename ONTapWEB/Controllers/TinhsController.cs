@@ -44,6 +44,7 @@ namespace ONTapWEB.Controllers
         public ActionResult TimKiemTinh(string MaTinh = "", string TenTinh = "")
         {
             ViewBag.MaTinh = MaTinh;
+            //123
             ViewBag.TenTinh = TenTinh;
             var tinh = db.Tinh.SqlQuery("EXEC Tinh_TimKiem @MaTinh ='" + MaTinh+ "', @TenTinh ='" + TenTinh + "' ");              
             return View(tinh.ToList());
