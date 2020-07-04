@@ -43,7 +43,7 @@ namespace ONTapWEB.Controllers
             ViewBag.GioiTinh = GioiTinh;
             ViewBag.Email = Email;
             ViewBag.DiaChi = DiaChi;
-            ViewBag.MaTinh = new SelectList(db.Tinh, "MaTinh", "TenTinh");
+            ViewBag.TenTinh = new SelectList(db.Tinh, "MaTinh", "TenTinh");
             var thanhviens = db.ThanhVien.SqlQuery("EXEC ThanhVien_TimKiem @MaTV = '" + MaTV +"',@HoTen = N'"+ HoTen +"', @NgaySinh = '"+NgaySinh+"', @GioiTinh = '"+GioiTinh+"' ,@Email = N'"+Email+"',@DiaChi = N'"+DiaChi+"',@MaTinh = '"+ TenTinh + "' ");
             
             return View(thanhviens.ToList());
